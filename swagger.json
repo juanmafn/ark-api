@@ -1,0 +1,116 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "API REST ARK WEB",
+      "description": "Documentación de la api rest que consume la web de estadísticas de arkweb",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:3004",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Registros",
+        "description": "API para los registros"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/registros": {
+        "post": {
+          "tags": [
+            "Registros"
+          ],
+          "description": "Añadimos nuevos registros",
+          "parameters": [
+            {
+              "name": "registro",
+              "in": "body",
+              "description": "Registros que queremos añadir",
+              "schema": {
+                "$ref": "#/definitions/Registros"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Regitro añadido"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Registros"
+          ],
+          "summary": "Obtener todos los registros",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Registros"
+              },
+              "headers": {
+                "Access-Control-Allow-Origin": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Registros"
+          ],
+          "summary": "Borrar todos los registros",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Registro": {
+        "required": [
+          "nick",
+          "time"
+        ],
+        "properties": {
+          "nick": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "time": {
+            "type": "string",
+            "uniqueItems": true
+          }
+        }
+      },
+      "Registros": {
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+                "type" : "array",
+                "$ref": "#/definitions/Registro"
+            }
+          }
+        }
+      }
+    }
+  }
