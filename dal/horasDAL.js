@@ -254,15 +254,17 @@ horas.getSingleDiario = (params) => {
             result['fecha'] = require('../common/utils.js').dateToString2(fecha);
             result['series'] = [];
             let h = 0;
-            jugador.horas.forEach(hora => {
-                let name = ((h < 10) ? '0' + h : h) + ':00';
-                result['series'].push({
-                    name: name,
-                    data: [hora / 60],
-                    total: hora / 60
+            if (jugador) {
+                jugador.horas.forEach(hora => {
+                    let name = ((h < 10) ? '0' + h : h) + ':00';
+                    result['series'].push({
+                        name: name,
+                        data: [hora / 60],
+                        total: hora / 60
+                    });
+                    h++;
                 });
-                h++;
-            });
+            }
             resolve(result);
         });
     });
