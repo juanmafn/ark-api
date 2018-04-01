@@ -256,7 +256,7 @@ horas.getSingleDiario = (params) => {
             let h = 0;
             if (jugador) {
                 jugador.horas.forEach(hora => {
-                    let name = ((h < 10) ? '0' + h : h) + ':00';
+                    let name = ((h < 10) ? '0' + h : h);
                     result['series'].push({
                         name: name,
                         data: [hora / 60],
