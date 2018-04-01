@@ -228,7 +228,7 @@ horas.getSingleMensual = (params) => {
             for (let jugador in jugadores) {
                 let d = 1;
                 jugadores[jugador].data.forEach(hora => {
-                    let name = ((d < 10) ? '0' + d : d) + '/' + month;
+                    let name = ((d < 10) ? '0' + d : d);
                     result['series'].push({
                         name: name,
                         data: [hora / 60],
